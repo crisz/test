@@ -1,0 +1,18 @@
+.playlist {
+  width: 70%;
+  min-height: 80px;
+  margin: 0 auto;
+}
+
+.playlist:not(:last-child) {
+  padding-bottom: 20px;
+  border-bottom: solid 1px indigo;
+}
+
+.playlist .title {
+  text-transform: capitalize;
+}
+
+.playlist .song {
+  padding-left: 10px;
+}

@@ -1,0 +1,38 @@
+.form-container {
+  max-width: 700px;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+
+input {
+  width: 80%;
+  height: 28px;
+  font-size: 24px;
+  border-radius: 5px;
+  -webkit-appearance: listitem;
+}
+
+.form-section {
+  min-height: 50px;
+}
+
+label {
+  font-size: 25px;
+}
+
+input[type=submit] {
+  background: indigo;
+  color: white;
+  height: 33px;
+  border: 0;
+  cursor: pointer;
+  width: 330px;
+  border-radius: 0;
+}
+
+body h2, body h2 a {
+  color: indigo;
+  font-size: 33px;
+  font-weight: bold;
+  text-align: center;
+}

@@ -1,0 +1,106 @@
+html, body {
+  height: 100%;
+}
+body {
+  background-color: #dedede;
+  margin: 0;
+  padding: 0;
+  font-family: 'Tajawal', sans-serif;
+}
+nav {
+  height: 64px;
+  width: 100%;
+  background-color: indigo;
+}
+.hero-banner {
+  width: 100%;
+  height: 600px;
+  background: url('hero-banner.jpg') 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.hero-banner .welcome-text {
+  font-family: 'Dancing Script', cursive;
+  color: white;
+  padding-top: 62px;
+  margin-left: 235px;
+  font-size: 4.1em;
+  
+}
+#tracks-container {
+  max-width: 1000px;
+  min-height: 600px;
+  margin: 15px auto;
+}
+.choose-view {
+  display: block;
+  text-align: center;
+}
+.choose-view li {
+  display: inline;
+  padding: 0 10px;
+  cursor: pointer;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: indigo;
+}
+.choose-view li.selected {
+  text-decoration: underline;
+}
+
+h1, strong {
+  color: indigo;
+}
+
+input[type=search] {
+  width: 64%;
+  height: 35px;
+  border: 0;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.7);
+  margin-top: 16px;
+  margin-right: 3vw;
+  font-size: 24px;
+  padding-left: 10px;
+  float: right;
+}
+
+
+input[type=search]:focus {
+  background: rgba(255, 255, 255, 1);
+}
+
+@media only screen and (max-width: 1016px) {
+  #tracks-container {
+    text-align: center;
+  }
+}
+
+/* 
+.choose-view li:not(:last-child)::after {
+  content: ' - '
+} */
+
+.logo {
+  display: inline-block;
+  font-size: 33px;
+  color: white;
+  font-weight: bold;
+  padding-left: 50px;
+}
+
+.logo a, .logo a:visited, .logo a:active {
+  display: inline;
+  font-size: 33px;
+  color: white;
+  text-decoration: none;
+  padding-top: 7px;
+}
+
+nav a, nav a:visited, nav a:active {
+  font-size: 22px;
+  padding-right: 26px;
+  padding-top: 15px;
+  color: white;
+  float: right;
+}
