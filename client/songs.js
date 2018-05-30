@@ -1,6 +1,7 @@
 function TrackEl(title, author, mp3, image) {
   var image = image || 'song-placeholder.png';
   var mp3 = /*mp3 ||*/ 'Ludovico Einaudi - Nuvole Bianche.mp3';
+  mp3 = window.location.origin+'/fd3469b93f47007058d96ae28f78e535'
   var cardEl = document.createElement('div');
   cardEl.classList = 'card';
   

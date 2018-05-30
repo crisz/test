@@ -43,24 +43,26 @@ function bindMenuEvents() {
 }
 
 function loadPublicSongs() {
-  var tracks = getPublicSongs(); // service.getPublicSongs();
-  clearSelected();
-  publicSongs.classList = 'selected';
-  container.innerHTML = '';
-  tracks.forEach(function(item) {
-    container.appendChild(new TrackEl(item.name, item.title, item.mp3, item.image));
+  changeView(publicSongs);
+
+  getPublicSongs(function (tracks) {
+    container.innerHTML = '';
+    tracks.forEach(function(item) {
+      container.appendChild(new TrackEl(item.name, item.title, item.mp3, item.image));
+    });
+    console.log(tracks);
   });
 }
 
 function loadYourSongs() {
-  var tracks = getYourSongs(); // service.getYourSongs();
-  clearSelected();
-  yourSongs.classList = 'selected';
-  container.innerHTML = '<a href="load-your-songs.html">Load your songs</a><br>';
-  tracks.forEach(function(item) {
-    container.appendChild(new TrackEl(item.name, item.title, item.mp3, item.image));
+  changeView(yourSongs);
+  getYourSongs(function (tracks) {
+    container.innerHTML = '<a href="load-your-songs.html">Load your songs</a><br>';
+    tracks.forEach(function(item) {
+      container.appendChild(new TrackEl(item.name, item.title, item.mp3, item.image));
+    });
+    console.log(tracks);
   });
-  console.log(tracks);
 }
 
 function loadPlaylists() {
@@ -72,6 +74,23 @@ function loadPlaylists() {
   playlistsItems.forEach(function(item) {
     container.appendChild(new PlaylistEl(item));
   });
+}
+
+function loadYourFriends() {
+  changeView(yourFriends);
+  getYourFriends(function (friends) {
+    container.innerHTML = '<div class="search-friend"><label for="search-friend">Search your friends</label><input type="text" id="search-friend" placeholder="username"></div>';
+    friends.forEach(function(item) {
+      container.appendChild(new FriendEl(new Friend(item.username, item.listening)));
+    });
+    console.log(friends);
+  });
+}
+
+function changeView(newView) {
+  clearSelected();
+  newView.classList = 'selected';
+  container.innerHTML = '<div class="loader"></div>'
 }
 
 function clearSelected() {
@@ -95,52 +114,14 @@ function getPlaylists() {
   ];
 }
 
-function getPublicSongs() {
-  return [{
-    name: 'Nuvole Bianche',
-    title: 'Ludovico Einaudi',
-    mp3: 'ccc',
-    image: 'https://rockitecn.nohup.it/foto/20633/ludovico-einaudi-primavera-sheet-music-intervista.jpg?new'
-  },
-  {
-    name: 'aaa',
-    title: 'bbb',
-    mp3: 'ccc'
-  },
-  {
-    name: 'aaa',
-    title: 'bbb',
-    mp3: 'ccc'
-  }]
+function getPublicSongs(cb) {
+  service.getPublicSongs(cb)
 }
 
-function getYourSongs() {
-  service.getSongs(function(data) {
-    console.log(data);
-  });
-  return  [ {
-    name: 'cane',
-    title: 'bbb',
-    mp3: 'ccc'
-  },
-  {
-    name: 'gatto',
-    title: 'bbb',
-    mp3: 'ccc'
-  },
-  {
-    name: 'aaa',
-    title: 'bbb',
-    mp3: 'ccc'
-  },
-  {
-    name: 'aaa',
-    title: 'bbb',
-    mp3: 'ccc'
-  },
-  {
-    name: 'aaa',
-    title: 'bbb',
-    mp3: 'ccc'
-  }];
+function getYourSongs(cb) {
+  service.getSongs(cb);
+}
+
+function getYourFriends(cb) {
+  service.getYourFriends(cb);
 }
