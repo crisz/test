@@ -26,7 +26,7 @@ var connection = mysql.createConnection({
   password : (process.env.NODE_ENV === 'dev' ? '' : 'd6d61873')
 });
 
-connection.query('CREATE DATABASE IF NOT EXISTS spotifai', function (err) {
+connection.query('CREATE DATABASE IF NOT EXISTS ' + (process.env.NODE_ENV === 'dev' ? 'spotifai' :  'heroku_dabf6c529dbabf5'), function (err) {
   if (err) throw err;
   connection.query('USE ' + (process.env.NODE_ENV === 'dev' ? 'spotifai' :  'heroku_dabf6c529dbabf5'), function (err) {
       if (err) throw err;
