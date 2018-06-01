@@ -3,15 +3,15 @@ var router = express.Router();
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
+  user     : process.env.NODE_ENV === 'dev' ? 'localhost' : 'eu-cdbr-west-02.cleardb.net',
+  user     : process.env.NODE_ENV === 'dev' ? 'root' : 'bbb29682c1dcb3',
+  password : process.env.NODE_ENV === 'dev' ? '' : 'd6d61873',,
   multipleStatements: true
 });
 
 connection.query('CREATE DATABASE IF NOT EXISTS spotifai', function (err) {
   if (err) throw err;
-  connection.query('USE spotifai', function (err) {
+  connection.query('USE ' + (process.env.NODE_ENV === 'dev' ? 'spotifai' :  'heroku_dabf6c529dbabf5'), function (err) {
       if (err) throw err;
       connection.query(`CREATE TABLE IF NOT EXISTS \`friend\` (
         \`friend1\` varchar(100) NOT NULL,
