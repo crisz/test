@@ -55,5 +55,12 @@ var service = (function() {
     http(data, cb);
   }
 
-  return {getSongs, getPublicSongs, getYourFriends, login, signup};
+  function addFriend(friend, cb) {
+    server = 'api/friends/'+sessionStorage.getItem('username');
+    method = 'POST';
+    var data = {username: friend}
+
+    http(data, cb);
+  }
+  return {addFriend, getSongs, getPublicSongs, getYourFriends, login, signup};
 })();

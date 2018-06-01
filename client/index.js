@@ -70,34 +70,45 @@ function loadPublicSongs() {
     container.innerHTML = '<div class="search-song"><label for="search-song">Search your songs</label><input type="search" id="search-song" placeholder="Search song..."></div>'; 
     trackElements = [];
     tracks.forEach(function(item) {
-      var element = new TrackEl(item.name, item.title, item.mp3, item.image);
+      var element = new TrackEl(item.title, item.author, item.mp3, item.image, item.album);
       trackElements.push(element);
-      container.appendChild(element);
+      container.appendChild(element.element);
     });
 
     document.getElementById('search-song').addEventListener('keyup', function () {
       var self = this;
       trackElements.forEach(function (trackEl) {
         if (trackEl.match(self.value)) {
-          trackEl.style.display = 'none';
+          trackEl.element.style.display = 'none';
         } else {
-          trackEl.style.display = 'inline-block';
+          trackEl.element.style.display = 'inline-block';
         }
       });
     });
-    console.log(tracks);
   });
 }
 
 function loadYourSongs() {
   changeView(yourSongs);
   getYourSongs(function (tracks) {
-    container.innerHTML = '<a href="load-your-songs.html">Load your songs</a><br>';
-    container.innerHTML += '<div class="search-song"><label for="search-song">Search your songs</label><input type="search" id="search-song" placeholder="Search song..."></div>';
+    container.innerHTML = '<div class="search-song"><label for="search-song">Search your songs</label><input type="search" id="search-song" placeholder="Search song..."></div>'; 
+    trackElements = [];
     tracks.forEach(function(item) {
-      container.appendChild(new TrackEl(item.name, item.title, item.mp3, item.image));
+      var element = new TrackEl(item.name, item.title, item.mp3, item.image);
+      trackElements.push(element);
+      container.appendChild(element.element);
     });
-    console.log(tracks);
+
+    document.getElementById('search-song').addEventListener('keyup', function () {
+      var self = this;
+      trackElements.forEach(function (trackEl) {
+        if (trackEl.match(self.value)) {
+          trackEl.element.style.display = 'none';
+        } else {
+          trackEl.element.style.display = 'inline-block';
+        }
+      });
+    });
   });
 }
 
@@ -115,7 +126,9 @@ function loadPlaylists() {
 function loadYourFriends() {
   changeView(yourFriends);
   getYourFriends(function (friends) {
-    container.innerHTML = '<div class="search-friend"><label for="search-friend">Search your friends</label><input type="search" id="search-friend" placeholder="username"></div>';
+    container.innerHTML = '<div class="add-friend"><label for="add-friend">Add your friends</label><input type="text" id="add-friend" placeholder="username"></div>'
+    container.innerHTML += '<button onclick="addFriend()">Add friend</button>';
+    
     friends.forEach(function(item) {
       container.appendChild(new FriendEl(new Friend(item.username, item.listening)));
     });
@@ -126,7 +139,7 @@ function loadYourFriends() {
 function changeView(newView) {
   clearSelected();
   newView.classList = 'selected';
-  container.innerHTML = '<div class="loader"></div>'
+  // container.innerHTML = '<div class="loader"></div>'
 }
 
 function clearSelected() {
@@ -189,5 +202,12 @@ function scrollFriends() {
   loadYourFriends();
   document.querySelector('#container').scrollIntoView({ 
     behavior: 'smooth' 
+  });
+}
+
+function addFriend() {
+  var friend = document.getElementById('add-friend').value;
+  service.addFriend(friend, function(object) {
+    console.log(object);
   });
 }

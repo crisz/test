@@ -21,7 +21,7 @@
   </nav>
   <div class="container">
     <main class="form-container">
-      <form id="form" enctype="multipart/form-data"  method="POST" action="api/song">
+      <form id="form" method="POST" action="api/song" enctype="multipart/form-data">
         <div class="form-section">
           <input type="text" id="titolo" placeholder="Titolo" name="title">
           <label for="titolo"> Titolo </label> 
@@ -48,6 +48,7 @@
         <div class="form-section">
           <input type="submit" value="Invia">
         </div>
+        <input type="hidden" name="username" id="username-field">
       </form>
     </main>
   </div>

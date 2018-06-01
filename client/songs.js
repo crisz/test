@@ -1,10 +1,9 @@
-function TrackEl(title, author, mp3, image) {
+function TrackEl(title, author, mp3, image, album) {
   this.image = image || 'song-placeholder.png';
-  this.mp3 = /*mp3 ||*/ 'Ludovico Einaudi - Nuvole Bianche.mp3';
+  this.mp3 = window.location.origin + '/' + mp3;
   this.author = author;
   this.title = title;
-  this.album = 'album';
-  mp3 = window.location.origin+'/fd3469b93f47007058d96ae28f78e535'
+  this.album = album || 'album';
   var cardEl = document.createElement('div');
   cardEl.classList = 'card';
   
@@ -32,14 +31,14 @@ function TrackEl(title, author, mp3, image) {
   infoContainerEl.appendChild(authorEl);
   infoContainerEl.appendChild(buttonsEl);
   cardEl.appendChild(infoContainerEl);
-  return cardEl;
+  this.element = cardEl;
 }
 
 TrackEl.prototype.match = function (value) {
   return (
-    this.title.indexOf(value) !== -1 ||
-    this.album.indexOf(value) !== -1 ||
-    this.author.indexOf(value) !== -1
+    this.title.indexOf(value) === -1 &&
+    this.album.indexOf(value) === -1 &&
+    this.author.indexOf(value) === -1
   )
 }
 

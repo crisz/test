@@ -24,4 +24,6 @@ function init() {
       songLoaded = false;
     }
   }
+
+  document.getElementById('username-field').value = sessionStorage.getItem('username') || 'public';
 }
