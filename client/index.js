@@ -67,10 +67,11 @@ function loadPublicSongs() {
   changeView(publicSongs);
 
   getPublicSongs(function (tracks) {
-    container.innerHTML = '<div class="search-song"><label for="search-song">Search your songs</label><input type="search" id="search-song" placeholder="Search song..."></div>'; 
+    container.innerHTML = '<div class="search-song"><label for="search-song">Search public songs</label><input type="search" id="search-song" placeholder="Search song..."></div>'; 
     trackElements = [];
     tracks.forEach(function(item) {
-      var element = new TrackEl(item.title, item.author, item.mp3, item.image, item.album);
+      console.log(item);
+      var element = new TrackEl(item.title, item.author, item.mp3, item.img, item.album);
       trackElements.push(element);
       container.appendChild(element.element);
     });
@@ -91,10 +92,12 @@ function loadPublicSongs() {
 function loadYourSongs() {
   changeView(yourSongs);
   getYourSongs(function (tracks) {
-    container.innerHTML = '<div class="search-song"><label for="search-song">Search your songs</label><input type="search" id="search-song" placeholder="Search song..."></div>'; 
+    container.innerHTML = '<a href="load-your-songs.html">Load your songs</a><br>';
+    container.innerHTML += '<div class="search-song"><label for="search-song">Search your songs</label><input type="search" id="search-song" placeholder="Search song..."></div>'; 
+    
     trackElements = [];
     tracks.forEach(function(item) {
-      var element = new TrackEl(item.name, item.title, item.mp3, item.image);
+      var element = new TrackEl(item.title, item.author, item.mp3, item.img, item.album);
       trackElements.push(element);
       container.appendChild(element.element);
     });

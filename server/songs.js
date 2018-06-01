@@ -67,37 +67,21 @@ connection.query('CREATE DATABASE IF NOT EXISTS spotifai', function (err) {
 });
 
 var upload = multer({storage});
-var publicSongs = [ {
-                title: 'Bocca di rosa',
-                author: 'De andrè',
-                album: 'Volume I',
-                image: 'http://www.valtellinanews.it/assets/Uploads/_resampled/CroppedImage720439-Fabrizio-De-Andre.jpg',
-                mp3: 'fd3469b93f47007058d96ae28f78e535'
-              },
-              {
-                title: 'Nuvole bianche',
-                author: 'Ludovico Einaudi',
-                album: 'Una mattina',
-                image: 'http://www.ludovicoeinaudi.com/new/wp-content/uploads/2015/10/redim2-5.aspx_.jpeg',
-                mp3: 'f1a08f04b0ab62dca4a9d75b8e435a6f'
-              },
-              {
-                title: 'Bocca di rosa',
-                author: 'De andrè',
-                album: 'Volume I',
-                image: 'http://www.valtellinanews.it/assets/Uploads/_resampled/CroppedImage720439-Fabrizio-De-Andre.jpg',
-                mp3: 'fd3469b93f47007058d96ae28f78e535'
-              }];
 
 router.get('/songs/:username', function(req, res) {
-  songs[0].name = req.params.username;
-  res.json(songs);
-  res.end();
+  connection.query('SELECT * FROM song WHERE ?;', {owner: req.params.username}, function(err, data) {
+    if (err) throw err;
+    res.json(data);
+    res.end();
+  });
 });
 
 router.get('/songs', function(req, res) {
-  res.json(publicSongs);
-  res.end();
+  connection.query('SELECT * FROM song WHERE owner="public";', function(err, data) {
+    if (err) throw err;
+    res.json(data);
+    res.end();
+  });
 });
 
 

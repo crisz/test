@@ -21,7 +21,16 @@ var service = (function() {
     method = 'GET';
     var data = {};
 
-    http(data, cb);
+    http(data, function(res) {
+      res.forEach(el => {
+        el.mp3 = 'mp3/'+el.mp3_path;
+        el.img = 'img/'+el.img_path;          
+      });
+
+      console.log('yours', res);
+
+      cb(res);
+    });
   }
 
   function getPublicSongs(cb) {
@@ -29,7 +38,14 @@ var service = (function() {
     method = 'GET';
     var data = {};
 
-    http(data, cb);
+    http(data, function(res) {
+      res.forEach(el => {
+        el.mp3 = 'mp3/'+el.mp3_path;
+        el.img = 'img/'+el.img_path;          
+      });
+
+      cb(res);
+    });
   }
 
   function login(username, password, cb) {

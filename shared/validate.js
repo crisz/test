@@ -34,3 +34,8 @@ function validateSignup(first_name, last_name, username, email, password) {
   
   return null;
 }
+
+if (typeof module !== 'undefined') {
+  module.exports.validateLogin = validateLogin;
+  module.exports.validateSignup = validateSignup;
+}

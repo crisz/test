@@ -1,6 +1,7 @@
 var express = require('express');
 var mysql = require('mysql');
 var router = express.Router();
+var validate = require('../shared/validate');
 
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -27,29 +28,30 @@ connection.query('CREATE DATABASE IF NOT EXISTS spotifai', function (err) {
 });
 
 router.post('/login', function(req, res) {
-  connection.query('SELECT * from users', function(result) {
+  var user = [{username: req.body.username}, {password: req.body.password}];
+  connection.query('SELECT * from user WHERE ? AND ?', user, function(err, result) {
+    if (err) throw err;
     console.log(result);
+    if(result !== null && result.length > 0) {
+      res.statusCode = 200;
+      res.json(result[0]);
+      res.end();
+    } else {
+      res.statusCode = 401;
+      res.json({
+        error: 'Login failed'
+      });
+      res.end();
+    }
   });
 
-  if(req.body.username === req.body.password) {
-    res.statusCode = 200;
-    res.json({
-      username: req.body.username
-    });
-    res.end();
-  } else {
-    res.statusCode = 401;
-    res.json({
-      error: 'Login failed'
-    });
-    res.end();
-  }
+  
 });
 
 router.post('/sign-up', function(req, res) {
   var user = req.body;
   console.log('###user', user);
-  if (!validate(user)) {
+  if (validate.validateSignup(user.first_name, user.last_name, user.username, user.email, user.password)) {
     res.statusCode = 400;
     res.json({
       error: 'Form is not valid'
@@ -88,9 +90,5 @@ router.post('/sign-up', function(req, res) {
   }
 
 });
-
-function validate(user) {
-  return true;
-}
 
 module.exports = router;
