@@ -4,6 +4,7 @@ var router = express.Router();
 var formidable = require('formidable');
 var fs = require('fs');
 var multer = require('multer');
+
 var mysql = require('mysql');
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -108,4 +109,4 @@ router.post('/song', upload.any(), function(req, res) {
   });
 });
 
-module.exports = router;
+module.exports = router;setInterval(function () {     db.query('SELECT 1'); }, 5000);

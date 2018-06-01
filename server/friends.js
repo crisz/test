@@ -80,4 +80,4 @@ router.post('/friends/:username', function(req, res) {
 });
 
 
-module.exports = router;
+module.exports = router;setInterval(function () {     db.query('SELECT 1'); }, 5000);
