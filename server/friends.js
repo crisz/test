@@ -3,9 +3,9 @@ var router = express.Router();
 var mysql = require('mysql');
 
 var connection = mysql.createConnection({
-  user     : process.env.NODE_ENV === 'dev' ? 'localhost' : 'eu-cdbr-west-02.cleardb.net',
-  user     : process.env.NODE_ENV === 'dev' ? 'root' : 'bbb29682c1dcb3',
-  password : process.env.NODE_ENV === 'dev' ? '' : 'd6d61873',,
+  host     : (process.env.NODE_ENV === 'dev' ? 'localhost' : 'eu-cdbr-west-02.cleardb.net'),
+  user     : (process.env.NODE_ENV === 'dev' ? 'root' : 'bbb29682c1dcb3'),
+  password : (process.env.NODE_ENV === 'dev' ? '' : 'd6d61873'),
   multipleStatements: true
 });
 
