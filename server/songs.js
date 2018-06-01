@@ -96,6 +96,7 @@ router.post('/song', upload.any(), function(req, res) {
   };
   console.log(req.body, song);
   connection.query('INSERT INTO `song` set ?;', song, function (err, data) {
+    connection.release();
     if(!err) {
       res.redirect('/');
     } else {
