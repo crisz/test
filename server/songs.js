@@ -71,7 +71,7 @@ var upload = multer({storage});
 
 router.get('/songs/:username', function(req, res) {
   connection.query('SELECT * FROM song WHERE ?;', {owner: req.params.username}, function(err, data) {
-    connection.release();
+    
     if (err) throw err;
     res.json(data);
     res.end();
@@ -80,7 +80,7 @@ router.get('/songs/:username', function(req, res) {
 
 router.get('/songs', function(req, res) {
   connection.query('SELECT * FROM song WHERE owner="public";', function(err, data) {
-    connection.release();
+    
     if (err) throw err;
     res.json(data);
     res.end();
@@ -99,7 +99,7 @@ router.post('/song', upload.any(), function(req, res) {
   };
   console.log(req.body, song);
   connection.query('INSERT INTO `song` set ?;', song, function (err, data) {
-    connection.release();
+    
     if(!err) {
       res.redirect('/');
     } else {
