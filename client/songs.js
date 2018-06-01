@@ -18,6 +18,11 @@ function TrackEl(title, author, mp3, image, album) {
   authorEl.classList = 'author';
   authorEl.innerText = this.author;
 
+  
+  var albumEl = document.createElement('div');
+  albumEl.classList = 'author';
+  albumEl.innerText = this.album;
+
   var imageEl = document.createElement('div');
   imageEl.classList = 'image';
   imageEl.style.backgroundImage = 'url('+this.image+')';
@@ -29,6 +34,7 @@ function TrackEl(title, author, mp3, image, album) {
   cardEl.appendChild(imageEl);
   infoContainerEl.appendChild(titleEl);
   infoContainerEl.appendChild(authorEl);
+  infoContainerEl.appendChild(albumEl);
   infoContainerEl.appendChild(buttonsEl);
   cardEl.appendChild(infoContainerEl);
   this.element = cardEl;

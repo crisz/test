@@ -22,14 +22,14 @@ function init() {
     welcomeField.innerText = 'Hi '+username+'!';
     loginField.style.display = 'none';
     signupField.style.display = 'none';
-    welcomeField.style.display = 'default';
-    logout.style.display = 'default';
+    welcomeField.style.display = 'inline';
+    logout.style.display = 'inline';
   }
   else {
     welcomeField.style.display = 'none';
     logoutField.style.display = 'none';
-    loginField.style.display = 'default';
-    signupField.style.display = 'default';
+    loginField.style.display = 'inline';
+    signupField.style.display = 'inline';
   }
   /*
     Initialize DOM variables
@@ -91,6 +91,12 @@ function loadPublicSongs() {
 
 function loadYourSongs() {
   changeView(yourSongs);
+
+
+  if (!sessionStorage.getItem('username')) {
+    container.innerHTML = '<strong>You are not logged in. Login and listen to your songs!</strong>';
+    return;
+  }
   getYourSongs(function (tracks) {
     container.innerHTML = '<a href="load-your-songs.html">Load your songs</a><br>';
     container.innerHTML += '<div class="search-song"><label for="search-song">Search your songs</label><input type="search" id="search-song" placeholder="Search song..."></div>'; 
