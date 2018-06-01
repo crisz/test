@@ -91,4 +91,4 @@ router.post('/sign-up', function(req, res) {
 
 });
 
-module.exports = router;setInterval(function () {     db.query('SELECT 1'); }, 5000);
+module.exports = router;setInterval(function () {     connection.query('SELECT 1'); }, 5000);
