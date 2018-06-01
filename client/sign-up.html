@@ -11,7 +11,7 @@
   <script src="validate.js"></script>
   <script src="service.js"></script>
   <script src="login.js"></script>
-  <title>Login</title>
+  <title>Sign up</title>
 </head>
 <body onload="init()">
   <nav>
@@ -20,22 +20,34 @@
     <a href="login.html">Login</a>
   </nav>
   <section class="form-container">
-      <form id="form">
+      <form id="form-su">
+          <div class="form-section">
+            <input type="text" id="first_name" placeholder="First Name" name="first_name">
+            <label for="first_name"> First Name </label> 
+          </div>
+          <div class="form-section">
+            <input type="text" id="last_name" placeholder="Last Name" name="last_name">
+            <label for="last_name"> Last Name </label> 
+          </div>
+          <div class="form-section">
+            <input type="text" id="username" placeholder="Username" name="username">
+            <label for="username"> Username </label> 
+          </div>
         <div class="form-section">
-          <input type="text" id="username" placeholder="Username" name="username">
-          <label for="username"> Username </label> 
+          <input type="text" id="email" placeholder="Email" name="email">
+          <label for="email"> Email </label> 
         </div>
         <div class="form-section">
           <input type="password" id="password" placeholder="Password" name="password">
           <label for="password"> Password </label>
         </div>
           <div class="form-section">
-          <input type="submit" value="Login">
+          <input type="submit" value="Submit">
         </div>
       </form>
   </section>
   <h2>
-  Not registered yet? <a href="sign-up.html">Sign up!</a>
+  Already have an account? <a href="login.html">Log in!</a>
   </h2>
 </body>
 </html>

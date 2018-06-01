@@ -56,3 +56,15 @@ body h2, body h2 a {
   font-weight: bold;
   text-align: center;
 }
+
+.error {
+  background-color: crimson;
+  min-height: 30px;
+  border: solid 1px red;
+  border-radius: 3px;
+  padding: 8px;
+  padding-top: 15px;
+  color: white;
+  margin: 5px;
+  width: 50%;
+}

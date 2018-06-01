@@ -1,6 +1,9 @@
 function TrackEl(title, author, mp3, image) {
-  var image = image || 'song-placeholder.png';
-  var mp3 = /*mp3 ||*/ 'Ludovico Einaudi - Nuvole Bianche.mp3';
+  this.image = image || 'song-placeholder.png';
+  this.mp3 = /*mp3 ||*/ 'Ludovico Einaudi - Nuvole Bianche.mp3';
+  this.author = author;
+  this.title = title;
+  this.album = 'album';
   mp3 = window.location.origin+'/fd3469b93f47007058d96ae28f78e535'
   var cardEl = document.createElement('div');
   cardEl.classList = 'card';
@@ -10,19 +13,19 @@ function TrackEl(title, author, mp3, image) {
 
   var titleEl = document.createElement('div');
   titleEl.classList = 'title';
-  titleEl.innerText = title;
+  titleEl.innerText = this.title;
 
   var authorEl = document.createElement('div');
   authorEl.classList = 'author';
-  authorEl.innerText = author;
+  authorEl.innerText = this.author;
 
   var imageEl = document.createElement('div');
   imageEl.classList = 'image';
-  imageEl.style.backgroundImage = 'url('+image+')';
+  imageEl.style.backgroundImage = 'url('+this.image+')';
   
   var buttonsEl = document.createElement('div');
   buttonsEl.classList = 'buttons';
-  buttonsEl.innerHTML = '<audio controls><source src="'+mp3+'" type="audio/mpeg"></audio>';
+  buttonsEl.innerHTML = '<audio controls><source src="'+this.mp3+'" type="audio/mpeg"></audio>';
   
   cardEl.appendChild(imageEl);
   infoContainerEl.appendChild(titleEl);
@@ -30,6 +33,14 @@ function TrackEl(title, author, mp3, image) {
   infoContainerEl.appendChild(buttonsEl);
   cardEl.appendChild(infoContainerEl);
   return cardEl;
+}
+
+TrackEl.prototype.match = function (value) {
+  return (
+    this.title.indexOf(value) !== -1 ||
+    this.album.indexOf(value) !== -1 ||
+    this.author.indexOf(value) !== -1
+  )
 }
 
 function PlaylistEl(playlist) {

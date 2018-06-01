@@ -18,15 +18,21 @@
 <body onload="init()">
   <nav>
     <span class="logo"><a href="index.html">Spotifai</a></span>
-    <a href="login.html" id="login">Login</a>
-    <input type="search" placeholder="Search song...">
+    <a onclick="scrollPublic()"> Explore songs </a>
+    <a onclick="scrollYours()"> My songs </a>
+    <a onclick="scrollPlaylist()"> See playlists </a>
+    <a onclick="scrollFriends()"> Watch friends </a>
+    <a href="login.html" id="login" class="right">Login</a>
+    <a href="sign-up.html" id="sign-up" class="right">Sign up</a>
+    <a href="#" id="logout" class="right">Logout</a>
+    <a href="#my-songs" id="welcome" class="right"></a>
   </nav>
   <div class="hero-banner">
     <div class="welcome-text">
       Welcome in Spotifai
     </div>
   </div>
-  <div class="container">
+  <div class="container" id="container">
     <div class="choose-view">
       <ul>
         <li id="public-songs">

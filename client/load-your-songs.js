@@ -1,3 +1,5 @@
+var songLoaded = true;
+
 function init() {
   document.getElementById('img').onchange = function (evt) {
     var tgt = evt.target || window.event.srcElement,
@@ -11,6 +13,15 @@ function init() {
       fr.readAsDataURL(files[0]);
     } else {
       alert('Live image not supported');
+    }
+  }
+
+  document.getElementById('track').onchange = function () {
+    var tgt = evt.target || window.event.srcElement,
+      files = tgt.files;
+
+    if (files) {
+      songLoaded = false;
     }
   }
 }

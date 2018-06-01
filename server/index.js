@@ -8,10 +8,13 @@ var bodyParser = require('body-parser');
 
 var clientPath = path.join('client');
 var songsPath = path.join('songs');
+var sharedPath = path.join('shared');
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}));
 app.use('/api', songs, friends);
 app.use('/auth', auth);
+app.use(express.static(sharedPath));
 app.use(express.static(songsPath));
 app.use(express.static(clientPath));
 

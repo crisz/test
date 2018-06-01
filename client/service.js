@@ -11,7 +11,7 @@ var service = (function() {
 
     request.onreadystatechange = function() {
       if (request.readyState === 4) {
-        setTimeout(() => callback(JSON.parse(request.response)), 300);
+        setTimeout(() => callback(JSON.parse(request.response)), 0);
       }
     }
   }
@@ -40,6 +40,13 @@ var service = (function() {
     http(data, cb);
   }
 
+  function signup(data, cb) {
+    server = 'auth/sign-up';
+    method = 'POST';
+
+    http(data, cb);
+  }
+
   function getYourFriends(cb) {
     server = 'api/friends/'+sessionStorage.getItem('username');
     method = 'GET';
@@ -48,5 +55,5 @@ var service = (function() {
     http(data, cb);
   }
 
-  return {getSongs, getPublicSongs, getYourFriends, login};
+  return {getSongs, getPublicSongs, getYourFriends, login, signup};
 })();

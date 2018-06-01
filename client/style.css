@@ -1,6 +1,11 @@
 html, body {
   height: 100%;
 }
+
+a {
+  cursor: pointer;
+}
+
 body {
   background-color: #dedede;
   margin: 0;
@@ -59,11 +64,10 @@ input[type=search] {
   border: 0;
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.7);
-  margin-top: 16px;
-  margin-right: 3vw;
+  margin: 0 10px 10px 30px;
   font-size: 24px;
   padding-left: 10px;
-  float: right;
+  display: inline-block;
 }
 
 
@@ -93,7 +97,7 @@ input[type=search]:focus {
 }
 
 .logo a, .logo a:visited, .logo a:active {
-  display: inline;
+  display: inline-block;
   font-size: 33px;
   color: white;
   text-decoration: none;
@@ -105,6 +109,8 @@ nav a, nav a:visited, nav a:active {
   padding-right: 26px;
   padding-top: 15px;
   color: white;
+}
+nav a.right, nav a.right:visited, nav a.right:active {
   float: right;
 }
 
